@@ -4,7 +4,7 @@ import json
 def upload_to_bigquery(json_file, dataset_id, table_id):
     client = bigquery.Client()
 
-    # Verifica se a tabela existe
+    # verifica se a tabela existe
     table_ref = client.dataset(dataset_id).table(table_id)
     try:
         table = client.get_table(table_ref)
@@ -13,7 +13,7 @@ def upload_to_bigquery(json_file, dataset_id, table_id):
         print(f"Erro ao obter a tabela: {e}")
         return
 
-    # Carrega o arquivo JSON
+    # carrega o arquivo JSON
     try:
         with open(json_file) as f:
             data = json.load(f)
@@ -22,7 +22,7 @@ def upload_to_bigquery(json_file, dataset_id, table_id):
         print(f"Erro ao ler o arquivo JSON: {e}")
         return
 
-    # Prepara os dados para inserção
+    # prepara os dados para inserção
     rows_to_insert = []
     for article in data:
         row = {
@@ -32,7 +32,7 @@ def upload_to_bigquery(json_file, dataset_id, table_id):
         }
         rows_to_insert.append(row)
 
-    # Insere os dados no BigQuery
+    # insere os dados no BigQuery
     errors = client.insert_rows_json(table, rows_to_insert)
     if errors:
         print(f"Erros ao inserir dados: {errors}")
@@ -40,5 +40,5 @@ def upload_to_bigquery(json_file, dataset_id, table_id):
         print("Dados inseridos com sucesso no BigQuery.")
 
 if __name__ == "__main__":
-    # Chame a função com os parâmetros corretos
+    # chame a função com os parâmetros corretos
     upload_to_bigquery("articles.json", "news_articles_dataset", "news_articles_table")

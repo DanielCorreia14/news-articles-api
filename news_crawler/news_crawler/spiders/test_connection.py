@@ -2,7 +2,7 @@ from google.cloud import bigquery
 
 def test_bigquery():
     client = bigquery.Client()
-    datasets = list(client.list_datasets())  # Lista todos os datasets no projeto
+    datasets = list(client.list_datasets())  # lista todos os datasets no projeto
     if datasets:
         print("Datasets disponíveis no projeto:")
         for dataset in datasets:

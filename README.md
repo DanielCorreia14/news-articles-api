@@ -4,7 +4,7 @@
 
 
 ## News Crawler and API Project
-## This project develops a backend application to collect, clean and store news articles in a BigQuery database, in addition to providing an API for searching for keywords in the articles.
+This project develops a backend application to collect, clean and store news articles in a BigQuery database, in addition to providing an API for searching for keywords in the articles.
 
 ## Technologies Used
 Python
